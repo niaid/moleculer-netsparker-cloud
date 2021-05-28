@@ -1,0 +1,40 @@
+{
+  "name": "moleculer-netsparker-cloud",
+  "version": "0.0.1",
+  "description": "Moleculer mixin for consuming Netsparker Cloud services.",
+  "main": "dist/index.js",
+  "scripts": {
+    "docs": "rm -rf ./docs/* && typedoc ./src",
+    "build": "npm ci && npm run docs && tsc",
+    "test": "node test/integration.js",
+    "testts": "node test/integration-ts.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/niaid/moleculer-netsparker-cloud.git"
+  },
+  "keywords": [
+    "moleculer",
+    "netsparker",
+    "security"
+  ],
+  "author": "christopher.campanale@nih.gov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niaid/moleculer-netsparker-cloud/issues"
+  },
+  "homepage": "https://github.com/niaid/moleculer-netsparker-cloud#readme",
+  "devDependencies": {
+    "@types/node": "^15.6.1",
+    "moleculer": "^0.14.13",
+    "netsparker-cloud": "github:niaid/netsparker-cloud-js",
+    "typescript": "^4.3.2"
+  },
+  "peerDependencies": {
+    "moleculer": ">= 0.13.0"
+  },
+  "engines": {
+    "node": ">= 6.x.x"
+  },
+  "typings": "dist/index.d.ts"
+}

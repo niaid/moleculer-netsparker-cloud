@@ -1,0 +1,43 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "esModuleInterop": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "pretty": true,
+    "sourceMap": true,
+    "target": "ES2019",
+    "baseUrl": "./",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "typeRoots": [],
+    "skipLibCheck": true,
+    "declaration": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "types"
+  ],
+  "plugins": [
+    {
+      "name": "typescript-tslint-plugin"
+    }
+  ],
+  "typedocOptions": {
+      "ignoreCompilerErrors": true,
+      "mode": "file",
+      "out": "docs",
+      "excludeNotExported": true,
+      "excludeExternals": true,
+  }
+}
