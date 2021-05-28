@@ -1,0 +1,280 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>moleculer-netsparker-cloud</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">moleculer-netsparker-cloud</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> moleculer-netsparker-cloud</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="moleculer-netsparker-mixin">Moleculer Netsparker Mixin</h1>
+				<p>Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide a Moleculer microservice with a configured API client available on the service object at <code>this.netsparkAdapter</code>.</p>
+				<h2 id="features">Features</h2>
+				<ul>
+					<li>autowired Netsparker Cloud API client configured using service settings</li>
+					<li>adapater typings allow for simple consumption of API</li>
+				</ul>
+				<h2 id="install">Install</h2>
+				<p>Install the module using NPM or your favoriate package manager: <code>npm install --save molculer-netsparker-cloud</code></p>
+				<h2 id="usage">Usage</h2>
+				<p>Both of the following examples pull the required API UserID and Token from the process environment. These values can be set using:</p>
+				<pre><code class="language-bash"><span class="hljs-built_in">export</span> NETSPARKER_USER_ID=<span class="hljs-string">"&lt;Your UserID&gt;"</span>
+<span class="hljs-built_in">export</span> NETSPARKER_TOKEN=<span class="hljs-string">"&lt;Your Token&gt;"</span></code></pre>
+				<p>JavaScript example:</p>
+				<pre><code class="language-js"><span class="hljs-keyword">let</span> { ServiceBroker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"moleculer"</span>);
+<span class="hljs-keyword">let</span> { NetsparkerAdapterMixin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"moleculer-netsparker-cloud"</span>);
+
+<span class="hljs-keyword">let</span> broker = <span class="hljs-keyword">new</span> ServiceBroker({ <span class="hljs-attr">logger</span>: <span class="hljs-built_in">console</span> });
+
+<span class="hljs-comment">// Create a service</span>
+<span class="hljs-keyword">const</span> service = broker.createService({
+    <span class="hljs-attr">mixins</span>: NetsparkerAdapterMixin,
+    <span class="hljs-attr">settings</span>: {
+      <span class="hljs-attr">netsparkerBasePath</span>: process.env.NETSPARKER_BASE_PATH,
+      <span class="hljs-attr">netsparkerUserId</span>: process.env.NETSPARKER_USER_ID,
+      <span class="hljs-attr">netsparkerToken</span>: process.env.NETSPARKER_TOKEN,
+    }
+});
+
+<span class="hljs-comment">// Start server</span>
+broker.start().then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  <span class="hljs-built_in">console</span>.trace(service);
+  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> broker.stop(), <span class="hljs-number">10000</span>);
+});</code></pre>
+				<p>TypeScript Example:</p>
+				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Service, ServiceBroker, ServiceSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"moleculer"</span>;
+<span class="hljs-keyword">import</span> { NetsparkerAdapterMixin, INetsparkerAdapterMixin, INetsparkerAdapterMixinSettings } <span class="hljs-keyword">from</span> <span class="hljs-string">"../dist"</span>;
+
+<span class="hljs-keyword">let</span> broker = <span class="hljs-keyword">new</span> ServiceBroker();
+
+<span class="hljs-keyword">type</span> MyExampleServiceSettings = INetsparkerAdapterMixinSettings &amp; {
+  someOtherSetting: <span class="hljs-built_in">string</span>;
+}
+
+<span class="hljs-keyword">type</span> MyExampleService = Service&lt;MyExampleServiceSettings&gt; &amp; INetsparkerAdapterMixin;
+
+<span class="hljs-keyword">const</span> MyExampleServiceSchema: ServiceSchema&lt;MyExampleServiceSettings&gt; = {
+  name: <span class="hljs-string">'example'</span>,
+  mixins: [
+    NetsparkerAdapterMixin
+  ],
+  settings: {
+    someOtherSetting: <span class="hljs-string">'test'</span>,
+    netsparkerBasePath: process.env.NETSPARKER_BASE_PATH,
+    netsparkerUserId: process.env.NETSPARKER_USER_ID,
+    netsparkerToken: process.env.NETSPARKER_TOKEN,
+  },
+  actions: {
+    test: {
+      <span class="hljs-keyword">async</span> handler(<span class="hljs-keyword">this</span>: MyExampleService) {
+        <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.test();
+      }
+    }
+  },
+  methods: {
+    <span class="hljs-keyword">async</span> test(<span class="hljs-keyword">this</span>: MyExampleService) {
+      <span class="hljs-keyword">const</span> { body: me } = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.netsparkerAdapater.AccountApi.accountMe();
+      <span class="hljs-keyword">this</span>.logger.info(me);
+    }
+  }
+}
+
+<span class="hljs-comment">// Create a service</span>
+<span class="hljs-keyword">const</span> service = broker.createService(MyExampleServiceSchema);
+
+<span class="hljs-comment">// Start server</span>
+broker.start().then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  broker.call(<span class="hljs-string">'example.test'</span>);
+});</code></pre>
+				<p>The above TS example exemplifies one of the best quality of this mixin, the exported types.</p>
+				<p>Using these types one can appropriately type a service schema for robust intellisense during development as well as type checking during compilation.</p>
+				<h2 id="settings">Settings</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>Property</th>
+							<th>Type</th>
+							<th>Default</th>
+							<th>Description</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td><code>netsparkerUserId</code></td>
+							<td><code>String</code></td>
+							<td><strong>required</strong></td>
+							<td>Netsparker API User ID</td>
+						</tr>
+						<tr>
+							<td><code>netsparkerToken</code></td>
+							<td><code>String</code></td>
+							<td><strong>required</strong></td>
+							<td>Netsparker API Token</td>
+						</tr>
+						<tr>
+							<td><code>netsparkerBasePath</code></td>
+							<td><code>String</code></td>
+							<td><code>https://www.netsparkercloud.com</code></td>
+							<td>Netsparker API URL</td>
+						</tr>
+				</tbody></table>
+				<h2 id="roadmap">Roadmap</h2>
+				<p>Below is a small list of possible features that may be added in the future, especially if there is demand. Currently the focus of this module is very precise so the following items are not intended to be implemented any time soon:</p>
+				<ul>
+					<li>Currently an instance of all API client types is created and configured for authentication. While this consumes a trivial amount of time and memory one may wish to opt out of all clients so options to either specify which clients should be &quot;auto-wired&quot; or which clients should be execluded from this process may be useful.</li>
+					<li>The <a href="https://github.com/niaid/netsparker-cloud-js">Netsparker API client library</a> in use is automatically generated using the published Swagger/OpenAPI specification provided by Netsparker. It includes a feature for providing interceptor services which can be configured as clients are created. Options for this may be useful.</li>
+				</ul>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/inetsparkeradaptermixin.html" class="tsd-kind-icon">INetsparker<wbr>Adapter<wbr>Mixin</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/inetsparkeradaptermixinsettings.html" class="tsd-kind-icon">INetsparker<wbr>Adapter<wbr>Mixin<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#netsparkerapiclient" class="tsd-kind-icon">NetsparkerAPIClient</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#netsparkeradapter" class="tsd-kind-icon">Netsparker<wbr>Adapter</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#defaultnetsparkeradaptersettings" class="tsd-kind-icon">Default<wbr>Netsparker<wbr>Adapter<wbr>Settings</a>
+					</li>
+					<li class=" tsd-kind-object-literal">
+						<a href="globals.html#netsparkeradaptermixin" class="tsd-kind-icon">Netsparker<wbr>Adapter<wbr>Mixin</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
