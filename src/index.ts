@@ -68,7 +68,7 @@ export interface INetsparkerAdapterMixin extends Service<INetsparkerAdapterMixin
 
 export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettings> = {
 
-  name: 'NetsparkerAdapter',
+  name: 'Netsparker',
 
   settings: DefaultNetsparkerAdapterSettings,
 
@@ -104,7 +104,6 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
 
   async started(this: INetsparkerAdapterMixin) {
     const { body: acccountDetails } = await this.netsparkerAdapater.AccountApi.accountLicense();
-    this.netsparkerAdapater
     this.logger.info(acccountDetails);
   }
 

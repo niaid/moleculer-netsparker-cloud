@@ -98,6 +98,40 @@ The above TS example exemplifies one of the best quality of this mixin, the expo
 
 Using these types one can appropriately type a service schema for robust intellisense during development as well as type checking during compilation.
 
+## Tests
+
+A couple simple tests (essentially the examples above) are included.
+
+The JavaScript test may be ran with `npm test`. The output is simmilar to the Typescript test below except that the service object is traced to the console and broker is stopped after a set period of time.
+
+The Typescript test may be ran with `npm run testts` and outputs the following:
+
+```
+> moleculer-netsparker-cloud@0.0.1 testts /Users/campanalecp/git/niaid/moleculer-netsparker-cloud
+> node test/integration-ts.js
+
+[2021-05-28T21:04:23.617Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: Moleculer v0.14.13 is starting...
+[2021-05-28T21:04:23.618Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: Namespace: <not defined>
+[2021-05-28T21:04:23.619Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: Node ID: local.niaid.nih.gov-30604
+[2021-05-28T21:04:23.620Z] INFO  l02126201.niaid.nih.gov-30604/REGISTRY: Strategy: RoundRobinStrategy
+[2021-05-28T21:04:23.620Z] INFO  l02126201.niaid.nih.gov-30604/REGISTRY: Discoverer: LocalDiscoverer
+[2021-05-28T21:04:23.621Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: Serializer: JSONSerializer
+[2021-05-28T21:04:23.631Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: Validator: FastestValidator
+[2021-05-28T21:04:23.632Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: Registered 13 internal middleware(s).
+[2021-05-28T21:04:23.648Z] INFO  l02126201.niaid.nih.gov-30604/EXAMPLE: Netsparker adapater: basic HTTP auth configured
+[2021-05-28T21:04:23.649Z] INFO  l02126201.niaid.nih.gov-30604/EXAMPLE: Netsparker adapater: enabled
+[2021-05-28T21:04:23.654Z] INFO  l02126201.niaid.nih.gov-30604/REGISTRY: '$node' service is registered.
+[2021-05-28T21:04:23.660Z] INFO  l02126201.niaid.nih.gov-30604/$NODE: Service '$node' started.
+[2021-05-28T21:04:23.938Z] INFO  l02126201.niaid.nih.gov-30604/EXAMPLE: AccountLicenseApiModel { subscriptionMaximumSiteLimit: 80, subscriptionSiteCount: 46, subscriptionEndDate: '17/12/2021 06:00 PM', subscriptionStartDate: '17/12/2020 06:00 PM', isAccountWhitelisted: true, usedScanCreditCount: 0, scanCreditCount: 0, isCreditScanEnabled: false, isSubscriptionEnabled: true, preVerifiedWebsites: [], licenses: [ LicenseBaseModel { id: '********-****-****-****-************', isActive: true, key: '******', accountCanCreateSharkScanTask: false } ] }
+[2021-05-28T21:04:23.941Z] INFO  l02126201.niaid.nih.gov-30604/REGISTRY: 'example' service is registered.
+[2021-05-28T21:04:23.942Z] INFO  l02126201.niaid.nih.gov-30604/EXAMPLE: Service 'example' started.
+[2021-05-28T21:04:23.943Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: ✔ ServiceBroker with 2 service(s) is started successfully in 294ms.
+[2021-05-28T21:04:24.215Z] INFO  l02126201.niaid.nih.gov-30604/EXAMPLE: UserHealthCheckApiModel { dateFormat: 'dd/MM/yyyy', displayName: 'Christopher Campanale', email: 'christopher.campanale@nih.gov', timeZoneInfo: '(UTC-06:00) Central America' }
+[2021-05-28T21:04:24.217Z] INFO  l02126201.niaid.nih.gov-30604/$NODE: Service '$node' stopped.
+[2021-05-28T21:04:24.217Z] INFO  l02126201.niaid.nih.gov-30604/EXAMPLE: Service 'example' stopped.
+[2021-05-28T21:04:24.217Z] INFO  l02126201.niaid.nih.gov-30604/BROKER: ServiceBroker is stopped. Good bye.
+```
+
 ## Settings
 
 | Property             | Type     | Default                           | Description            |
