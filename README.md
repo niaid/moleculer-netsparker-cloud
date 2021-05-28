@@ -6,6 +6,7 @@ Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide
 
   - autowired Netsparker Cloud API client configured using service settings
   - adapater typings allow for simple consumption of API
+  - Development documentation: https://niaid.github.io/moleculer-netsparker-cloud/
 
 ## Install
 
