@@ -1,11 +1,11 @@
 # Moleculer Netsparker Mixin
 
-Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide a Moleculer microservice with a configured API client available on the service object at `this.netsparkAdapter`.
+Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide a Moleculer microservice with a configured API client available on the service object at `this.netsparkerAdapter`.
 
 ## Features
 
   - autowired Netsparker Cloud API client configured using service settings
-  - adapater typings allow for simple consumption of API
+  - adapter typings allow for simple consumption of API
   - Development documentation: https://niaid.github.io/moleculer-netsparker-cloud/
 
 ## Install
@@ -80,7 +80,7 @@ const MyExampleServiceSchema: ServiceSchema<MyExampleServiceSettings> = {
   },
   methods: {
     async test(this: MyExampleService) {
-      const { body: me } = await this.netsparkerAdapater.AccountApi.accountMe();
+      const { body: me } = await this.netsparkerAdapter.AccountApi.accountMe();
       this.logger.info(me);
     }
   }
@@ -119,11 +119,11 @@ The Typescript test may be ran with `npm run testts` and outputs the following:
 [2021-05-28T21:04:23.621Z] INFO  local.niaid.nih.gov-30604/BROKER: Serializer: JSONSerializer
 [2021-05-28T21:04:23.631Z] INFO  local.niaid.nih.gov-30604/BROKER: Validator: FastestValidator
 [2021-05-28T21:04:23.632Z] INFO  local.niaid.nih.gov-30604/BROKER: Registered 13 internal middleware(s).
-[2021-05-28T21:04:23.648Z] INFO  local.niaid.nih.gov-30604/EXAMPLE: Netsparker adapater: basic HTTP auth configured
-[2021-05-28T21:04:23.649Z] INFO  local.niaid.nih.gov-30604/EXAMPLE: Netsparker adapater: enabled
+[2021-05-28T21:04:23.648Z] INFO  local.niaid.nih.gov-30604/EXAMPLE: Netsparker adapter: basic HTTP auth configured
+[2021-05-28T21:04:23.649Z] INFO  local.niaid.nih.gov-30604/EXAMPLE: Netsparker adapter: enabled
 [2021-05-28T21:04:23.654Z] INFO  local.niaid.nih.gov-30604/REGISTRY: '$node' service is registered.
 [2021-05-28T21:04:23.660Z] INFO  local.niaid.nih.gov-30604/$NODE: Service '$node' started.
-[2021-05-28T21:04:23.938Z] INFO  local.niaid.nih.gov-30604/EXAMPLE: AccountLicenseApiModel { subscriptionMaximumSiteLimit: 0, subscriptionSiteCount: 0, subscriptionEndDate: '01/01/1999 01:00 AM', subscriptionStartDate: '01/01/1999 01:00 AM', isAccountWhitelisted: true, usedScanCreditCount: 0, scanCreditCount: 0, isCreditScanEnabled: false, isSubscriptionEnabled: true, preVerifiedWebsites: [], licenses: [ LicenseBaseModel { id: '********-****-****-****-************', isActive: true, key: '******', accountCanCreateSharkScanTask: false } ] }
+[2021-05-28T21:04:23.938Z] INFO  local.niaid.nih.gov-30604/EXAMPLE:  Netsparker account info: AccountLicenseApiModel { subscriptionMaximumSiteLimit: 0, subscriptionSiteCount: 0, subscriptionEndDate: '01/01/1999 01:00 AM', subscriptionStartDate: '01/01/1999 01:00 AM', isAccountWhitelisted: true, usedScanCreditCount: 0, scanCreditCount: 0, isCreditScanEnabled: false, isSubscriptionEnabled: true, preVerifiedWebsites: [], licenses: [ LicenseBaseModel { id: '********-****-****-****-************', isActive: true, key: '******', accountCanCreateSharkScanTask: false } ] }
 [2021-05-28T21:04:23.941Z] INFO  local.niaid.nih.gov-30604/REGISTRY: 'example' service is registered.
 [2021-05-28T21:04:23.942Z] INFO  local.niaid.nih.gov-30604/EXAMPLE: Service 'example' started.
 [2021-05-28T21:04:23.943Z] INFO  local.niaid.nih.gov-30604/BROKER: ✔ ServiceBroker with 2 service(s) is started successfully in 294ms.
@@ -135,11 +135,12 @@ The Typescript test may be ran with `npm run testts` and outputs the following:
 
 ## Settings
 
-| Property             | Type     | Default                           | Description            |
-| -------------------- | -------- | --------------------------------- | ---------------------- |
-| `netsparkerUserId`   | `String` | **required**                      | Netsparker API User ID |
-| `netsparkerToken`    | `String` | **required**                      | Netsparker API Token   |
-| `netsparkerBasePath` | `String` | `https://www.netsparkercloud.com` | Netsparker API URL     |
+| Property             | Type      | Default                           | Description                      |
+| -------------------- | --------- | --------------------------------- | -------------------------------- |
+| `netsparkerUserId`   | `String`  | **required**                      | Netsparker API User ID           |
+| `netsparkerToken`    | `String`  | **required**                      | Netsparker API Token             |
+| `netsparkerBasePath` | `String`  | `https://www.netsparkercloud.com` | Netsparker API URL               |
+| `accountInfoOnStart` | `Boolean` | `true`                            | Log account information on start |
 
 ## Roadmap
 

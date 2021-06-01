@@ -49,7 +49,7 @@ export interface INetsparkerAdapterMixinSettings extends ServiceSettingSchema {
 }
 export declare const DefaultNetsparkerAdapterSettings: INetsparkerAdapterMixinSettings;
 export interface INetsparkerAdapterMixin extends Service<INetsparkerAdapterMixinSettings> {
-    netsparkerAdapater: NetsparkerAdapter;
+    netsparkerAdapter: NetsparkerAdapter;
     netsparkerAuth: HttpBasicAuth;
     netsparkerSDK: typeof Netsparker;
 }

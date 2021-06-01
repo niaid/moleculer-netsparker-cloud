@@ -61,11 +61,11 @@
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
 				<h1 id="moleculer-netsparker-mixin">Moleculer Netsparker Mixin</h1>
-				<p>Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide a Moleculer microservice with a configured API client available on the service object at <code>this.netsparkAdapter</code>.</p>
+				<p>Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide a Moleculer microservice with a configured API client available on the service object at <code>this.netsparkerAdapter</code>.</p>
 				<h2 id="features">Features</h2>
 				<ul>
 					<li>autowired Netsparker Cloud API client configured using service settings</li>
-					<li>adapater typings allow for simple consumption of API</li>
+					<li>adapter typings allow for simple consumption of API</li>
 					<li>Development documentation: <a href="https://niaid.github.io/moleculer-netsparker-cloud/">https://niaid.github.io/moleculer-netsparker-cloud/</a></li>
 				</ul>
 				<h2 id="install">Install</h2>
@@ -127,7 +127,7 @@ broker.start().then(<span class="hljs-function"><span class="hljs-params">()</sp
   },
   methods: {
     <span class="hljs-keyword">async</span> test(<span class="hljs-keyword">this</span>: MyExampleService) {
-      <span class="hljs-keyword">const</span> { body: me } = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.netsparkerAdapater.AccountApi.accountMe();
+      <span class="hljs-keyword">const</span> { body: me } = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.netsparkerAdapter.AccountApi.accountMe();
       <span class="hljs-keyword">this</span>.logger.info(me);
     }
   }
@@ -157,11 +157,11 @@ broker.start().then(<span class="hljs-function"><span class="hljs-params">()</sp
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.621</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Serializer: JSONSerializer
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.631</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Validator: FastestValidator
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.632</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Registered <span class="hljs-number">13</span> <span class="hljs-built_in">int</span>ernal middleware(s).
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.648</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Netsparker adapater: basic HTTP auth configured
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.649</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Netsparker adapater: enabled
+[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.648</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Netsparker adapter: basic HTTP auth configured
+[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.649</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Netsparker adapter: enabled
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.654</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/REGISTRY: <span class="hljs-string">'$node'</span> service <span class="hljs-keyword">is</span> registered.
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.660</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/$NODE: Service <span class="hljs-string">'$node'</span> started.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.938</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: AccountLicenseApiModel { subscriptionMaximumSiteLimit: <span class="hljs-number">0</span>, subscriptionSiteCount: <span class="hljs-number">0</span>, subscriptionEndDate: <span class="hljs-string">'01/01/1999 01:00 AM'</span>, subscriptionStartDate: <span class="hljs-string">'01/01/1999 01:00 AM'</span>, isAccountWhitelisted: <span class="hljs-literal">true</span>, usedScanCreditCount: <span class="hljs-number">0</span>, scanCreditCount: <span class="hljs-number">0</span>, isCreditScanEnabled: <span class="hljs-literal">false</span>, isSubscriptionEnabled: <span class="hljs-literal">true</span>, preVerifiedWebsites: [], licenses: [ LicenseBaseModel { id: <span class="hljs-string">'********-****-****-****-************'</span>, isActive: <span class="hljs-literal">true</span>, key: <span class="hljs-string">'******'</span>, accountCanCreateSharkScanTask: <span class="hljs-literal">false</span> } ] }
+[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.938</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE:  Netsparker account info: AccountLicenseApiModel { subscriptionMaximumSiteLimit: <span class="hljs-number">0</span>, subscriptionSiteCount: <span class="hljs-number">0</span>, subscriptionEndDate: <span class="hljs-string">'01/01/1999 01:00 AM'</span>, subscriptionStartDate: <span class="hljs-string">'01/01/1999 01:00 AM'</span>, isAccountWhitelisted: <span class="hljs-literal">true</span>, usedScanCreditCount: <span class="hljs-number">0</span>, scanCreditCount: <span class="hljs-number">0</span>, isCreditScanEnabled: <span class="hljs-literal">false</span>, isSubscriptionEnabled: <span class="hljs-literal">true</span>, preVerifiedWebsites: [], licenses: [ LicenseBaseModel { id: <span class="hljs-string">'********-****-****-****-************'</span>, isActive: <span class="hljs-literal">true</span>, key: <span class="hljs-string">'******'</span>, accountCanCreateSharkScanTask: <span class="hljs-literal">false</span> } ] }
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.941</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/REGISTRY: <span class="hljs-string">'example'</span> service <span class="hljs-keyword">is</span> registered.
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.942</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Service <span class="hljs-string">'example'</span> started.
 [<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.943</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: ✔ ServiceBroker with <span class="hljs-number">2</span> service(s) <span class="hljs-keyword">is</span> started successfully <span class="hljs-keyword">in</span> <span class="hljs-number">294</span>ms.
@@ -195,6 +195,12 @@ broker.start().then(<span class="hljs-function"><span class="hljs-params">()</sp
 							<td><code>String</code></td>
 							<td><code>https://www.netsparkercloud.com</code></td>
 							<td>Netsparker API URL</td>
+						</tr>
+						<tr>
+							<td><code>accountInfoOnStart</code></td>
+							<td><code>Boolean</code></td>
+							<td><code>true</code></td>
+							<td>Log account information on start</td>
 						</tr>
 				</tbody></table>
 				<h2 id="roadmap">Roadmap</h2>

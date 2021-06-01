@@ -29,7 +29,7 @@ const MyExampleServiceSchema: ServiceSchema<MyExampleServiceSettings> = {
   },
   methods: {
     async test(this: MyExampleService) {
-      const { body: me } = await this.netsparkerAdapater.AccountApi.accountMe();
+      const { body: me } = await this.netsparkerAdapter.AccountApi.accountMe();
       this.logger.info(me);
     }
   }

@@ -71,7 +71,7 @@ var MyExampleServiceSchema = {
                 var me;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
-                        case 0: return [4 /*yield*/, this.netsparkerAdapater.AccountApi.accountMe()];
+                        case 0: return [4 /*yield*/, this.netsparkerAdapter.AccountApi.accountMe()];
                         case 1:
                             me = (_a.sent()).body;
                             this.logger.info(me);

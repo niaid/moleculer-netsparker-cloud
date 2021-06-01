@@ -61,7 +61,7 @@ export const DefaultNetsparkerAdapterSettings: INetsparkerAdapterMixinSettings =
 };
 
 export interface INetsparkerAdapterMixin extends Service<INetsparkerAdapterMixinSettings> {
-  netsparkerAdapater: NetsparkerAdapter;
+  netsparkerAdapter: NetsparkerAdapter;
   netsparkerAuth: HttpBasicAuth;
   netsparkerSDK: typeof Netsparker;
 }
@@ -81,7 +81,7 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
   methods: {},
 
   created(this: INetsparkerAdapterMixin) {
-    this.netsparkerAdapater = {} as NetsparkerAdapter;
+    this.netsparkerAdapter = {} as NetsparkerAdapter;
     this.netsparkerAuth = new HttpBasicAuth();
     this.netsparkerSDK = Netsparker;
     if (!this.settings.netsparkerUserId) {
@@ -92,19 +92,21 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
     }
     this.netsparkerAuth.username = this.settings.netsparkerUserId;
     this.netsparkerAuth.password = this.settings.netsparkerToken;
-    this.logger.info('Netsparker adapater: basic HTTP auth configured');
+    this.logger.info('Netsparker adapter: basic HTTP auth configured');
     APIS.map(netsparkerAPI => {
       const APIName = netsparkerAPI.name as NetsparkerAPINames;
       // @ts-ignore
-      this.netsparkerAdapater[APIName] = new netsparkerAPI(this.settings.netsparkerBasePath);
-      this.netsparkerAdapater[APIName].setDefaultAuthentication(this.netsparkerAuth);
+      this.netsparkerAdapter[APIName] = new netsparkerAPI(this.settings.netsparkerBasePath);
+      this.netsparkerAdapter[APIName].setDefaultAuthentication(this.netsparkerAuth);
     });
-    this.logger.info('Netsparker adapater: enabled');
+    this.logger.info('Netsparker adapter: enabled');
   },
 
   async started(this: INetsparkerAdapterMixin) {
-    const { body: acccountDetails } = await this.netsparkerAdapater.AccountApi.accountLicense();
-    this.logger.info(acccountDetails);
+    if (this.settings.accountInfoOnStart) {
+      const { body: acccountDetails } = await this.netsparkerAdapter.AccountApi.accountLicense();
+      this.logger.info('Netsparker account info:', acccountDetails);
+    }
   }
 
 };
