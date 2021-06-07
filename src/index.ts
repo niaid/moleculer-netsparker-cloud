@@ -1,6 +1,7 @@
 import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
 import * as Netsparker from 'netsparker-cloud';
 import { AccountApi, AgentGroupsApi, AgentsApi, APIS, AuditLogsApi, Authentication, AuthenticationProfilesApi, DiscoveryApi, HttpBasicAuth, IssuesApi, NotificationsApi, ScanPoliciesApi, ScanProfilesApi, ScansApi, TeamMembersApi, TechnologiesApi, VulnerabilityApi, WebsiteGroupsApi, WebsitesApi } from "netsparker-cloud";
+export * from 'netsparker-cloud';
 
 export type NetsparkerAPIClient = {
   setDefaultAuthentication(authStrategy: Authentication): void;
