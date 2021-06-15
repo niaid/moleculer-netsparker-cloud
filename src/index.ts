@@ -1,6 +1,11 @@
 import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
 import * as Netsparker from 'netsparker-cloud';
-import { AccountApi, AgentGroupsApi, AgentsApi, APIS, AuditLogsApi, Authentication, AuthenticationProfilesApi, DiscoveryApi, HttpBasicAuth, IssuesApi, NotificationsApi, ScanPoliciesApi, ScanProfilesApi, ScansApi, TeamMembersApi, TechnologiesApi, VulnerabilityApi, WebsiteGroupsApi, WebsitesApi } from "netsparker-cloud";
+import { APIS, Authentication, HttpBasicAuth } from "netsparker-cloud";
+
+// imported separately to make updates to APIDictionary easier
+import { AccountApi, AgentGroupsApi, AgentsApi, AuditLogsApi, AuthenticationProfilesApi, DiscoveryApi, IssuesApi, MembersApi, NotificationsApi, RolesApi, ScanPoliciesApi, ScanProfilesApi, ScansApi, TeamApi, TechnologiesApi, VulnerabilityApi, WebsiteGroupsApi, WebsitesApi } from "netsparker-cloud";
+
+// re-export API client to expose all model types
 export * from 'netsparker-cloud';
 
 export type NetsparkerAPIClient = {
@@ -15,11 +20,13 @@ type APIDictionary = {
   AuthenticationProfilesApi: typeof AuthenticationProfilesApi,
   DiscoveryApi: typeof DiscoveryApi,
   IssuesApi: typeof IssuesApi,
+  MembersApi: typeof MembersApi,
   NotificationsApi: typeof NotificationsApi,
+  RolesApi: typeof RolesApi,
   ScanPoliciesApi: typeof ScanPoliciesApi,
   ScanProfilesApi: typeof ScanProfilesApi,
   ScansApi: typeof ScansApi,
-  TeamMembersApi: typeof TeamMembersApi,
+  TeamApi: typeof TeamApi,
   TechnologiesApi: typeof TechnologiesApi,
   VulnerabilityApi: typeof VulnerabilityApi,
   WebsiteGroupsApi: typeof WebsiteGroupsApi,
