@@ -1,6 +1,6 @@
 {
   "name": "moleculer-netsparker-cloud",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "Moleculer mixin for consuming Netsparker Cloud services.",
   "main": "dist/index.js",
   "scripts": {
@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/niaid/moleculer-netsparker-cloud#readme",
   "dependencies": {
-    "netsparker-cloud": "github:niaid/netsparker-cloud-js"
+    "netsparker-cloud": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
