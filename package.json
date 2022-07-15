@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/niaid/moleculer-netsparker-cloud#readme",
   "dependencies": {
-    "netsparker-cloud": "^0.1.0"
+    "netsparker-cloud": "^0.2.0"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
