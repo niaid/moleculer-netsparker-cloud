@@ -4,16 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>moleculer-netsparker-cloud</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for moleculer-netsparker-cloud">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -47,12 +48,7 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
-			<h1> moleculer-netsparker-cloud</h1>
+			<h1>moleculer-netsparker-cloud</h1>
 		</div>
 	</div>
 </header>
@@ -60,115 +56,132 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="moleculer-netsparker-mixin">Moleculer Netsparker Mixin</h1>
+				<a href="#moleculer-netsparker-mixin" id="moleculer-netsparker-mixin" style="color: inherit; text-decoration: none;">
+					<h1>Moleculer Netsparker Mixin</h1>
+				</a>
 				<p>Moleculer mixin for consuming Netsparker Cloud services. This mixin will provide a Moleculer microservice with a configured API client available on the service object at <code>this.netsparkerAdapter</code>.</p>
-				<h2 id="features">Features</h2>
+				<a href="#features" id="features" style="color: inherit; text-decoration: none;">
+					<h2>Features</h2>
+				</a>
 				<ul>
 					<li>autowired Netsparker Cloud API client configured using service settings</li>
 					<li>adapter typings allow for simple consumption of API</li>
 					<li>Development documentation: <a href="https://niaid.github.io/moleculer-netsparker-cloud/">https://niaid.github.io/moleculer-netsparker-cloud/</a></li>
 				</ul>
-				<h2 id="install">Install</h2>
+				<a href="#install" id="install" style="color: inherit; text-decoration: none;">
+					<h2>Install</h2>
+				</a>
 				<p>Install the module using NPM or your favoriate package manager: <code>npm install --save molculer-netsparker-cloud</code></p>
-				<h2 id="usage">Usage</h2>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
 				<p>Both of the following examples pull the required API UserID and Token from the process environment. These values can be set using:</p>
-				<pre><code class="language-bash"><span class="hljs-built_in">export</span> NETSPARKER_USER_ID=<span class="hljs-string">"&lt;Your UserID&gt;"</span>
-<span class="hljs-built_in">export</span> NETSPARKER_TOKEN=<span class="hljs-string">"&lt;Your Token&gt;"</span></code></pre>
+				<pre><code class="language-bash"><span style="color: #0000FF">export</span><span style="color: #000000"> NETSPARKER_USER_ID=</span><span style="color: #A31515">&quot;&lt;Your UserID&gt;&quot;</span>
+<span style="color: #0000FF">export</span><span style="color: #000000"> NETSPARKER_TOKEN=</span><span style="color: #A31515">&quot;&lt;Your Token&gt;&quot;</span>
+</code></pre>
 				<p>JavaScript example:</p>
-				<pre><code class="language-js"><span class="hljs-keyword">let</span> { ServiceBroker } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"moleculer"</span>);
-<span class="hljs-keyword">let</span> { NetsparkerAdapterMixin } = <span class="hljs-built_in">require</span>(<span class="hljs-string">"moleculer-netsparker-cloud"</span>);
+				<pre><code class="language-js"><span style="color: #0000FF">let</span><span style="color: #000000"> { </span><span style="color: #001080">ServiceBroker</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;moleculer&quot;</span><span style="color: #000000">);</span>
+<span style="color: #0000FF">let</span><span style="color: #000000"> { </span><span style="color: #001080">NetsparkerAdapterMixin</span><span style="color: #000000"> } = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&quot;moleculer-netsparker-cloud&quot;</span><span style="color: #000000">);</span>
 
-<span class="hljs-keyword">let</span> broker = <span class="hljs-keyword">new</span> ServiceBroker({ <span class="hljs-attr">logger</span>: <span class="hljs-built_in">console</span> });
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">broker</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ServiceBroker</span><span style="color: #000000">({ </span><span style="color: #001080">logger:</span><span style="color: #000000"> </span><span style="color: #001080">console</span><span style="color: #000000"> });</span>
 
-<span class="hljs-comment">// Create a service</span>
-<span class="hljs-keyword">const</span> service = broker.createService({
-    <span class="hljs-attr">mixins</span>: NetsparkerAdapterMixin,
-    <span class="hljs-attr">settings</span>: {
-      <span class="hljs-attr">netsparkerBasePath</span>: process.env.NETSPARKER_BASE_PATH,
-      <span class="hljs-attr">netsparkerUserId</span>: process.env.NETSPARKER_USER_ID,
-      <span class="hljs-attr">netsparkerToken</span>: process.env.NETSPARKER_TOKEN,
-    }
-});
+<span style="color: #008000">// Create a service</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">service</span><span style="color: #000000"> = </span><span style="color: #001080">broker</span><span style="color: #000000">.</span><span style="color: #795E26">createService</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">mixins:</span><span style="color: #000000"> </span><span style="color: #001080">NetsparkerAdapterMixin</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">settings:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #001080">netsparkerBasePath:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">NETSPARKER_BASE_PATH</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">netsparkerUserId:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">NETSPARKER_USER_ID</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #001080">netsparkerToken:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">NETSPARKER_TOKEN</span><span style="color: #000000">,</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">});</span>
 
-<span class="hljs-comment">// Start server</span>
-broker.start().then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  <span class="hljs-built_in">console</span>.trace(service);
-  setTimeout(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> broker.stop(), <span class="hljs-number">10000</span>);
-});</code></pre>
+<span style="color: #008000">// Start server</span>
+<span style="color: #001080">broker</span><span style="color: #000000">.</span><span style="color: #795E26">start</span><span style="color: #000000">().</span><span style="color: #795E26">then</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">trace</span><span style="color: #000000">(</span><span style="color: #001080">service</span><span style="color: #000000">);</span>
+<span style="color: #000000">  </span><span style="color: #795E26">setTimeout</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">broker</span><span style="color: #000000">.</span><span style="color: #795E26">stop</span><span style="color: #000000">(), </span><span style="color: #098658">10000</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<p>TypeScript Example:</p>
-				<pre><code class="language-ts"><span class="hljs-keyword">import</span> { Service, ServiceBroker, ServiceSchema } <span class="hljs-keyword">from</span> <span class="hljs-string">"moleculer"</span>;
-<span class="hljs-keyword">import</span> { NetsparkerAdapterMixin, INetsparkerAdapterMixin, INetsparkerAdapterMixinSettings } <span class="hljs-keyword">from</span> <span class="hljs-string">"moleculer-netsparker-cloud"</span>;
+				<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">Service</span><span style="color: #000000">, </span><span style="color: #001080">ServiceBroker</span><span style="color: #000000">, </span><span style="color: #001080">ServiceSchema</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;moleculer&quot;</span><span style="color: #000000">;</span>
+<span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">NetsparkerAdapterMixin</span><span style="color: #000000">, </span><span style="color: #001080">INetsparkerAdapterMixin</span><span style="color: #000000">, </span><span style="color: #001080">INetsparkerAdapterMixinSettings</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&quot;moleculer-netsparker-cloud&quot;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">let</span> broker = <span class="hljs-keyword">new</span> ServiceBroker();
+<span style="color: #0000FF">let</span><span style="color: #000000"> </span><span style="color: #001080">broker</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #795E26">ServiceBroker</span><span style="color: #000000">();</span>
 
-<span class="hljs-keyword">type</span> MyExampleServiceSettings = INetsparkerAdapterMixinSettings &amp; {
-  someOtherSetting: <span class="hljs-built_in">string</span>;
-}
+<span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">MyExampleServiceSettings</span><span style="color: #000000"> = </span><span style="color: #267F99">INetsparkerAdapterMixinSettings</span><span style="color: #000000"> &amp; {</span>
+<span style="color: #000000">  </span><span style="color: #001080">someOtherSetting</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">;</span>
+<span style="color: #000000">}</span>
 
-<span class="hljs-keyword">type</span> MyExampleService = Service&lt;MyExampleServiceSettings&gt; &amp; INetsparkerAdapterMixin;
+<span style="color: #0000FF">type</span><span style="color: #000000"> </span><span style="color: #267F99">MyExampleService</span><span style="color: #000000"> = </span><span style="color: #267F99">Service</span><span style="color: #000000">&lt;</span><span style="color: #267F99">MyExampleServiceSettings</span><span style="color: #000000">&gt; &amp; </span><span style="color: #267F99">INetsparkerAdapterMixin</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> MyExampleServiceSchema: ServiceSchema&lt;MyExampleServiceSettings&gt; = {
-  name: <span class="hljs-string">'example'</span>,
-  mixins: [
-    NetsparkerAdapterMixin
-  ],
-  settings: {
-    someOtherSetting: <span class="hljs-string">'test'</span>,
-    netsparkerBasePath: process.env.NETSPARKER_BASE_PATH,
-    netsparkerUserId: process.env.NETSPARKER_USER_ID,
-    netsparkerToken: process.env.NETSPARKER_TOKEN,
-  },
-  actions: {
-    test: {
-      <span class="hljs-keyword">async</span> handler(<span class="hljs-keyword">this</span>: MyExampleService) {
-        <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.test();
-      }
-    }
-  },
-  methods: {
-    <span class="hljs-keyword">async</span> test(<span class="hljs-keyword">this</span>: MyExampleService) {
-      <span class="hljs-keyword">const</span> { body: me } = <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.netsparkerAdapter.AccountApi.accountMe();
-      <span class="hljs-keyword">this</span>.logger.info(me);
-    }
-  }
-}
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">MyExampleServiceSchema</span><span style="color: #000000">: </span><span style="color: #267F99">ServiceSchema</span><span style="color: #000000">&lt;</span><span style="color: #267F99">MyExampleServiceSettings</span><span style="color: #000000">&gt; = {</span>
+<span style="color: #000000">  </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;example&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">mixins:</span><span style="color: #000000"> [</span>
+<span style="color: #000000">    </span><span style="color: #001080">NetsparkerAdapterMixin</span>
+<span style="color: #000000">  ],</span>
+<span style="color: #000000">  </span><span style="color: #001080">settings:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">someOtherSetting:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">netsparkerBasePath:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">NETSPARKER_BASE_PATH</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">netsparkerUserId:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">NETSPARKER_USER_ID</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">netsparkerToken:</span><span style="color: #000000"> </span><span style="color: #001080">process</span><span style="color: #000000">.</span><span style="color: #001080">env</span><span style="color: #000000">.</span><span style="color: #0070C1">NETSPARKER_TOKEN</span><span style="color: #000000">,</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">actions:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">test:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">      </span><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #795E26">handler</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">: </span><span style="color: #267F99">MyExampleService</span><span style="color: #000000">) {</span>
+<span style="color: #000000">        </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #795E26">test</span><span style="color: #000000">();</span>
+<span style="color: #000000">      }</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  },</span>
+<span style="color: #000000">  </span><span style="color: #001080">methods:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #0000FF">async</span><span style="color: #000000"> </span><span style="color: #795E26">test</span><span style="color: #000000">(</span><span style="color: #0000FF">this</span><span style="color: #000000">: </span><span style="color: #267F99">MyExampleService</span><span style="color: #000000">) {</span>
+<span style="color: #000000">      </span><span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #001080">body</span><span style="color: #000000">: </span><span style="color: #0070C1">me</span><span style="color: #000000"> } = </span><span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">netsparkerAdapter</span><span style="color: #000000">.</span><span style="color: #001080">AccountApi</span><span style="color: #000000">.</span><span style="color: #795E26">accountMe</span><span style="color: #000000">();</span>
+<span style="color: #000000">      </span><span style="color: #0000FF">this</span><span style="color: #000000">.</span><span style="color: #001080">logger</span><span style="color: #000000">.</span><span style="color: #795E26">info</span><span style="color: #000000">(</span><span style="color: #001080">me</span><span style="color: #000000">);</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  }</span>
+<span style="color: #000000">}</span>
 
-<span class="hljs-comment">// Create a service</span>
-<span class="hljs-keyword">const</span> service = broker.createService(MyExampleServiceSchema);
+<span style="color: #008000">// Create a service</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">service</span><span style="color: #000000"> = </span><span style="color: #001080">broker</span><span style="color: #000000">.</span><span style="color: #795E26">createService</span><span style="color: #000000">(</span><span style="color: #001080">MyExampleServiceSchema</span><span style="color: #000000">);</span>
 
-<span class="hljs-comment">// Start server</span>
-broker.start().then(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
-  broker.call(<span class="hljs-string">'example.test'</span>);
-});</code></pre>
+<span style="color: #008000">// Start server</span>
+<span style="color: #001080">broker</span><span style="color: #000000">.</span><span style="color: #795E26">start</span><span style="color: #000000">().</span><span style="color: #795E26">then</span><span style="color: #000000">(() </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">  </span><span style="color: #001080">broker</span><span style="color: #000000">.</span><span style="color: #795E26">call</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;example.test&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
 				<p>The above TS example exemplifies one of the best quality of this mixin, the exported types.</p>
 				<p>Using these types one can appropriately type a service schema for robust intellisense during development as well as type checking during compilation.</p>
-				<h2 id="tests">Tests</h2>
+				<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
+					<h2>Tests</h2>
+				</a>
 				<p>A couple simple tests (essentially the examples above) are included.</p>
 				<p>The JavaScript test may be ran with <code>npm test</code>. The output is simmilar to the Typescript test below except that the service object is traced to the console and broker is stopped after a set period of time.</p>
 				<p>The Typescript test may be ran with <code>npm run testts</code> and outputs the following:</p>
-				<pre><code>&gt; moleculer-netsparker-<span class="hljs-symbol">cloud@</span><span class="hljs-number">0.0</span><span class="hljs-number">.1</span> testts /Users/campanalecp/git/niaid/moleculer-netsparker-cloud
-&gt; node test/<span class="hljs-built_in">int</span>egration-ts.js
+				<pre><code><span style="color: #000000">&gt; </span><span style="color: #001080">moleculer</span><span style="color: #000000">-</span><span style="color: #001080">netsparker</span><span style="color: #000000">-</span><span style="color: #001080">cloud</span><span style="color: #000000">@</span><span style="color: #098658">0.0</span><span style="color: #000000">.</span><span style="color: #098658">1</span><span style="color: #000000"> </span><span style="color: #001080">testts</span><span style="color: #000000"> /</span><span style="color: #001080">Users</span><span style="color: #000000">/</span><span style="color: #001080">campanalecp</span><span style="color: #000000">/</span><span style="color: #001080">git</span><span style="color: #000000">/</span><span style="color: #001080">niaid</span><span style="color: #000000">/</span><span style="color: #001080">moleculer</span><span style="color: #000000">-</span><span style="color: #001080">netsparker</span><span style="color: #000000">-</span><span style="color: #001080">cloud</span>
+<span style="color: #000000">&gt; </span><span style="color: #001080">node</span><span style="color: #000000"> </span><span style="color: #001080">test</span><span style="color: #000000">/</span><span style="color: #001080">integration</span><span style="color: #000000">-</span><span style="color: #001080">ts</span><span style="color: #000000">.</span><span style="color: #001080">js</span>
 
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.617</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Moleculer v0<span class="hljs-number">.14</span><span class="hljs-number">.13</span> <span class="hljs-keyword">is</span> starting...
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.618</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Namespace: &lt;<span class="hljs-keyword">not</span> defined&gt;
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.619</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Node ID: local.niaid.nih.gov<span class="hljs-number">-30604</span>
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.620</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/REGISTRY: Strategy: RoundRobinStrategy
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.620</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/REGISTRY: Discoverer: LocalDiscoverer
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.621</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Serializer: JSONSerializer
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.631</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Validator: FastestValidator
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.632</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: Registered <span class="hljs-number">13</span> <span class="hljs-built_in">int</span>ernal middleware(s).
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.648</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Netsparker adapter: basic HTTP auth configured
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.649</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Netsparker adapter: enabled
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.654</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/REGISTRY: <span class="hljs-string">'$node'</span> service <span class="hljs-keyword">is</span> registered.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.660</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/$NODE: Service <span class="hljs-string">'$node'</span> started.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.938</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE:  Netsparker account info: AccountLicenseApiModel { subscriptionMaximumSiteLimit: <span class="hljs-number">0</span>, subscriptionSiteCount: <span class="hljs-number">0</span>, subscriptionEndDate: <span class="hljs-string">'01/01/1999 01:00 AM'</span>, subscriptionStartDate: <span class="hljs-string">'01/01/1999 01:00 AM'</span>, isAccountWhitelisted: <span class="hljs-literal">true</span>, usedScanCreditCount: <span class="hljs-number">0</span>, scanCreditCount: <span class="hljs-number">0</span>, isCreditScanEnabled: <span class="hljs-literal">false</span>, isSubscriptionEnabled: <span class="hljs-literal">true</span>, preVerifiedWebsites: [], licenses: [ LicenseBaseModel { id: <span class="hljs-string">'********-****-****-****-************'</span>, isActive: <span class="hljs-literal">true</span>, key: <span class="hljs-string">'******'</span>, accountCanCreateSharkScanTask: <span class="hljs-literal">false</span> } ] }
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.941</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/REGISTRY: <span class="hljs-string">'example'</span> service <span class="hljs-keyword">is</span> registered.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.942</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Service <span class="hljs-string">'example'</span> started.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">23.943</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: ✔ ServiceBroker with <span class="hljs-number">2</span> service(s) <span class="hljs-keyword">is</span> started successfully <span class="hljs-keyword">in</span> <span class="hljs-number">294</span>ms.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">24.215</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: UserHealthCheckApiModel { dateFormat: <span class="hljs-string">'dd/MM/yyyy'</span>, displayName: <span class="hljs-string">'Christopher Campanale'</span>, email: <span class="hljs-string">'christopher.campanale@nih.gov'</span>, timeZoneInfo: <span class="hljs-string">'(UTC-06:00) Central America'</span> }
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">24.217</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/$NODE: Service <span class="hljs-string">'$node'</span> stopped.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">24.217</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/EXAMPLE: Service <span class="hljs-string">'example'</span> stopped.
-[<span class="hljs-number">2021</span><span class="hljs-number">-05</span><span class="hljs-number">-28</span>T21:<span class="hljs-number">04</span>:<span class="hljs-number">24.217</span>Z] INFO  local.niaid.nih.gov<span class="hljs-number">-30604</span>/BROKER: ServiceBroker <span class="hljs-keyword">is</span> stopped. Good bye.</code></pre><h2 id="settings">Settings</h2>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.617</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: </span><span style="color: #001080">Moleculer</span><span style="color: #000000"> </span><span style="color: #001080">v0</span><span style="color: #000000">.</span><span style="color: #098658">14.13</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">starting</span><span style="color: #000000">...</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.618</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: Namespace: &lt;</span><span style="color: #267F99">not</span><span style="color: #000000"> </span><span style="color: #267F99">defined</span><span style="color: #000000">&gt;</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.619</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: </span><span style="color: #001080">Node</span><span style="color: #000000"> ID: </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.620</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/REGISTRY: Strategy: </span><span style="color: #001080">RoundRobinStrategy</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.620</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/REGISTRY: Discoverer: </span><span style="color: #001080">LocalDiscoverer</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.621</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: Serializer: </span><span style="color: #001080">JSONSerializer</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.631</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: Validator: </span><span style="color: #001080">FastestValidator</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.632</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: </span><span style="color: #001080">Registered</span><span style="color: #000000"> </span><span style="color: #098658">13</span><span style="color: #000000"> </span><span style="color: #001080">internal</span><span style="color: #000000"> </span><span style="color: #795E26">middleware</span><span style="color: #000000">(</span><span style="color: #001080">s</span><span style="color: #000000">).</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.648</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/EXAMPLE: </span><span style="color: #001080">Netsparker</span><span style="color: #000000"> adapter: </span><span style="color: #001080">basic</span><span style="color: #000000"> </span><span style="color: #0070C1">HTTP</span><span style="color: #000000"> </span><span style="color: #001080">auth</span><span style="color: #000000"> </span><span style="color: #001080">configured</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.649</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/EXAMPLE: </span><span style="color: #001080">Netsparker</span><span style="color: #000000"> adapter: </span><span style="color: #001080">enabled</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.654</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/REGISTRY: </span><span style="color: #A31515">&#039;$node&#039;</span><span style="color: #000000"> </span><span style="color: #001080">service</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">registered</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.660</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/$NODE: </span><span style="color: #001080">Service</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;$node&#039;</span><span style="color: #000000"> </span><span style="color: #001080">started</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.938</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/EXAMPLE:  </span><span style="color: #001080">Netsparker</span><span style="color: #000000"> </span><span style="color: #001080">account</span><span style="color: #000000"> info: </span><span style="color: #001080">AccountLicenseApiModel</span><span style="color: #000000"> { subscriptionMaximumSiteLimit: </span><span style="color: #098658">0</span><span style="color: #000000">, subscriptionSiteCount: </span><span style="color: #098658">0</span><span style="color: #000000">, subscriptionEndDate: </span><span style="color: #A31515">&#039;01/01/1999 01:00 AM&#039;</span><span style="color: #000000">, subscriptionStartDate: </span><span style="color: #A31515">&#039;01/01/1999 01:00 AM&#039;</span><span style="color: #000000">, isAccountWhitelisted: </span><span style="color: #0000FF">true</span><span style="color: #000000">, usedScanCreditCount: </span><span style="color: #098658">0</span><span style="color: #000000">, scanCreditCount: </span><span style="color: #098658">0</span><span style="color: #000000">, isCreditScanEnabled: </span><span style="color: #0000FF">false</span><span style="color: #000000">, isSubscriptionEnabled: </span><span style="color: #0000FF">true</span><span style="color: #000000">, preVerifiedWebsites: [], licenses: [ </span><span style="color: #001080">LicenseBaseModel</span><span style="color: #000000"> { </span><span style="color: #001080">id:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;********-****-****-****-************&#039;</span><span style="color: #000000">, </span><span style="color: #001080">isActive:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">, </span><span style="color: #001080">key:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;******&#039;</span><span style="color: #000000">, </span><span style="color: #001080">accountCanCreateSharkScanTask:</span><span style="color: #000000"> </span><span style="color: #0000FF">false</span><span style="color: #000000"> } ] }</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.941</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/REGISTRY: </span><span style="color: #A31515">&#039;example&#039;</span><span style="color: #000000"> </span><span style="color: #001080">service</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">registered</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.942</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/EXAMPLE: </span><span style="color: #001080">Service</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;example&#039;</span><span style="color: #000000"> </span><span style="color: #001080">started</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:23.943</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: ✔ </span><span style="color: #001080">ServiceBroker</span><span style="color: #000000"> </span><span style="color: #AF00DB">with</span><span style="color: #000000"> </span><span style="color: #098658">2</span><span style="color: #000000"> </span><span style="color: #795E26">service</span><span style="color: #000000">(</span><span style="color: #001080">s</span><span style="color: #000000">) </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">started</span><span style="color: #000000"> </span><span style="color: #001080">successfully</span><span style="color: #000000"> </span><span style="color: #0000FF">in</span><span style="color: #000000"> 294</span><span style="color: #001080">ms</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:24.215</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/EXAMPLE: </span><span style="color: #001080">UserHealthCheckApiModel</span><span style="color: #000000"> { dateFormat: </span><span style="color: #A31515">&#039;dd/MM/yyyy&#039;</span><span style="color: #000000">, displayName: </span><span style="color: #A31515">&#039;Christopher Campanale&#039;</span><span style="color: #000000">, email: </span><span style="color: #A31515">&#039;christopher.campanale@nih.gov&#039;</span><span style="color: #000000">, timeZoneInfo: </span><span style="color: #A31515">&#039;(UTC-06:00) Central America&#039;</span><span style="color: #000000"> }</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:24.217</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/$NODE: </span><span style="color: #001080">Service</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;$node&#039;</span><span style="color: #000000"> </span><span style="color: #001080">stopped</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:24.217</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/EXAMPLE: </span><span style="color: #001080">Service</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;example&#039;</span><span style="color: #000000"> </span><span style="color: #001080">stopped</span><span style="color: #000000">.</span>
+<span style="color: #000000">[</span><span style="color: #098658">2021</span><span style="color: #000000">-</span><span style="color: #098658">05</span><span style="color: #000000">-28</span><span style="color: #0070C1">T21</span><span style="color: #000000">:</span><span style="color: #098658">04</span><span style="color: #000000">:24.217</span><span style="color: #0070C1">Z</span><span style="color: #000000">] </span><span style="color: #0070C1">INFO</span><span style="color: #000000">  </span><span style="color: #001080">local</span><span style="color: #000000">.</span><span style="color: #001080">niaid</span><span style="color: #000000">.</span><span style="color: #001080">nih</span><span style="color: #000000">.</span><span style="color: #001080">gov</span><span style="color: #000000">-</span><span style="color: #098658">30604</span><span style="color: #000000">/BROKER: </span><span style="color: #001080">ServiceBroker</span><span style="color: #000000"> </span><span style="color: #001080">is</span><span style="color: #000000"> </span><span style="color: #001080">stopped</span><span style="color: #000000">. </span><span style="color: #001080">Good</span><span style="color: #000000"> </span><span style="color: #001080">bye</span><span style="color: #000000">.</span>
+</code></pre>
+				<a href="#settings" id="settings" style="color: inherit; text-decoration: none;">
+					<h2>Settings</h2>
+				</a>
 				<table>
 					<thead>
 						<tr>
@@ -203,7 +216,9 @@ broker.start().then(<span class="hljs-function"><span class="hljs-params">()</sp
 							<td>Log account information on start</td>
 						</tr>
 				</tbody></table>
-				<h2 id="roadmap">Roadmap</h2>
+				<a href="#roadmap" id="roadmap" style="color: inherit; text-decoration: none;">
+					<h2>Roadmap</h2>
+				</a>
 				<p>Below is a small list of possible features that may be added in the future, especially if there is demand. Currently the focus of this module is very precise so the following items are not intended to be implemented any time soon:</p>
 				<ul>
 					<li>Currently an instance of all API client types is created and configured for authentication. While this consumes a trivial amount of time and memory one may wish to opt out of all clients so options to either specify which clients should be &quot;auto-wired&quot; or which clients should be execluded from this process may be useful.</li>
@@ -214,30 +229,30 @@ broker.start().then(<span class="hljs-function"><span class="hljs-params">()</sp
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/inetsparkeradaptermixin.html" class="tsd-kind-icon">INetsparker<wbr>Adapter<wbr>Mixin</a>
+						<a href="interfaces/INetsparkerAdapterMixin.html" class="tsd-kind-icon">INetsparker<wbr>Adapter<wbr>Mixin</a>
 					</li>
 					<li class=" tsd-kind-interface">
-						<a href="interfaces/inetsparkeradaptermixinsettings.html" class="tsd-kind-icon">INetsparker<wbr>Adapter<wbr>Mixin<wbr>Settings</a>
+						<a href="interfaces/INetsparkerAdapterMixinSettings.html" class="tsd-kind-icon">INetsparker<wbr>Adapter<wbr>Mixin<wbr>Settings</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#netsparkerapiclient" class="tsd-kind-icon">NetsparkerAPIClient</a>
+						<a href="modules.html#NetsparkerAPIClient" class="tsd-kind-icon">NetsparkerAPIClient</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
-						<a href="globals.html#netsparkeradapter" class="tsd-kind-icon">Netsparker<wbr>Adapter</a>
+						<a href="modules.html#NetsparkerAdapter" class="tsd-kind-icon">Netsparker<wbr>Adapter</a>
 					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#defaultnetsparkeradaptersettings" class="tsd-kind-icon">Default<wbr>Netsparker<wbr>Adapter<wbr>Settings</a>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#DefaultNetsparkerAdapterSettings" class="tsd-kind-icon">Default<wbr>Netsparker<wbr>Adapter<wbr>Settings</a>
 					</li>
-					<li class=" tsd-kind-object-literal">
-						<a href="globals.html#netsparkeradaptermixin" class="tsd-kind-icon">Netsparker<wbr>Adapter<wbr>Mixin</a>
+					<li class=" tsd-kind-variable">
+						<a href="modules.html#NetsparkerAdapterMixin" class="tsd-kind-icon">Netsparker<wbr>Adapter<wbr>Mixin</a>
 					</li>
 				</ul>
 			</nav>
@@ -249,65 +264,15 @@ broker.start().then(<span class="hljs-function"><span class="hljs-params">()</sp
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

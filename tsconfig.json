@@ -34,10 +34,7 @@
     }
   ],
   "typedocOptions": {
-      "ignoreCompilerErrors": true,
-      "mode": "file",
       "out": "docs",
-      "excludeNotExported": true,
       "excludeExternals": true,
   }
 }
