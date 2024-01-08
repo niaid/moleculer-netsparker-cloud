@@ -30,10 +30,6 @@ import {
 // re-export API client to expose all model types
 export * from "netsparker-cloud";
 
-export type NetsparkerAPIClient = {
-  setDefaultAuthentication(authStrategy: Authentication): void;
-};
-
 type APIDictionary = {
   AccountApi: typeof AccountApi;
   AgentGroupsApi: typeof AgentGroupsApi;
@@ -170,9 +166,6 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
         };
         // @ts-ignore
         this.netsparkerAdapter[APIName] = new netsparkerAPI(this.APIConfig);
-        this.netsparkerAdapter[
-          APIName
-        ].withMiddleware().setDefaultAuthentication(this.netsparkerAuth);
       });
       this.logger.info("Netsparker adapter: enabled");
     },
