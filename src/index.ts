@@ -2,9 +2,7 @@ import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
 import * as Netsparker from "netsparker-cloud";
 import {
   AccountLicenseApiModel,
-  APIS,
-  Authentication,
-  HttpBasicAuth,
+  ConfigurationParameters,
 } from "netsparker-cloud";
 
 // imported separately to make updates to APIDictionary easier
@@ -59,6 +57,46 @@ type APIDictionary = {
 
 type NetsparkerAPINames = keyof APIDictionary;
 
+const APIS: (
+  | typeof AccountApi
+  | typeof AgentGroupsApi
+  | typeof AgentsApi
+  | typeof AuditLogsApi
+  | typeof AuthenticationProfilesApi
+  | typeof DiscoveryApi
+  | typeof IssuesApi
+  | typeof MembersApi
+  | typeof NotificationsApi
+  | typeof RolesApi
+  | typeof ScanPoliciesApi
+  | typeof ScanProfilesApi
+  | typeof ScansApi
+  | typeof TeamApi
+  | typeof TechnologiesApi
+  | typeof VulnerabilityApi
+  | typeof WebsiteGroupsApi
+  | typeof WebsitesApi
+)[] = [
+  AccountApi,
+  AgentGroupsApi,
+  AgentsApi,
+  AuditLogsApi,
+  AuthenticationProfilesApi,
+  DiscoveryApi,
+  IssuesApi,
+  MembersApi,
+  NotificationsApi,
+  RolesApi,
+  ScanPoliciesApi,
+  ScanProfilesApi,
+  ScansApi,
+  TeamApi,
+  TechnologiesApi,
+  VulnerabilityApi,
+  WebsiteGroupsApi,
+  WebsitesApi,
+];
+
 export type NetsparkerAdapter = {
   [API in NetsparkerAPINames]: InstanceType<APIDictionary[API]>;
 };
@@ -96,7 +134,6 @@ export const DefaultNetsparkerAdapterSettings: INetsparkerAdapterMixinSettings =
 export interface INetsparkerAdapterMixin
   extends Service<INetsparkerAdapterMixinSettings> {
   netsparkerAdapter: NetsparkerAdapter;
-  netsparkerAuth: HttpBasicAuth;
   netsparkerSDK: typeof Netsparker;
 }
 
@@ -116,7 +153,6 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
 
     created(this: INetsparkerAdapterMixin) {
       this.netsparkerAdapter = {} as NetsparkerAdapter;
-      this.netsparkerAuth = new HttpBasicAuth();
       this.netsparkerSDK = Netsparker;
       if (!this.settings.netsparkerUserId) {
         throw new Error("a value for netsparkerUserId was not provided!");
@@ -129,13 +165,14 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
       this.logger.info("Netsparker adapter: basic HTTP auth configured");
       APIS.map((netsparkerAPI) => {
         const APIName = netsparkerAPI.name as NetsparkerAPINames;
+        const APIConfig: ConfigurationParameters = {
+          basePath: this.settings.netsparkerBasePath,
+        };
         // @ts-ignore
-        this.netsparkerAdapter[APIName] = new netsparkerAPI(
-          this.settings.netsparkerBasePath
-        );
-        this.netsparkerAdapter[APIName].setDefaultAuthentication(
-          this.netsparkerAuth
-        );
+        this.netsparkerAdapter[APIName] = new netsparkerAPI(this.APIConfig);
+        this.netsparkerAdapter[
+          APIName
+        ].withMiddleware().setDefaultAuthentication(this.netsparkerAuth);
       });
       this.logger.info("Netsparker adapter: enabled");
     },
