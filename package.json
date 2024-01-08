@@ -25,18 +25,18 @@
   },
   "homepage": "https://github.com/niaid/moleculer-netsparker-cloud#readme",
   "dependencies": {
-    "netsparker-cloud": "^0.2.0"
+    "netsparker-cloud": "github:niaid/netsparker-cloud-js#request-update"
   },
   "devDependencies": {
     "@types/node": "^15.6.1",
     "moleculer": "^0.14.13",
-    "typescript": "^4.3.2"
+    "typescript": "^4.9.5"
   },
   "peerDependencies": {
     "moleculer": ">= 0.13.0"
   },
   "engines": {
-    "node": ">= 6.x.x"
+    "node": ">= 18.x.x"
   },
   "typings": "dist/index.d.ts"
 }
