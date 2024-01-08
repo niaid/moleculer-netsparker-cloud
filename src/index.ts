@@ -2,6 +2,7 @@ import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
 import * as Netsparker from "netsparker-cloud";
 import {
   AccountLicenseApiModel,
+  APIS,
   Authentication,
   HttpBasicAuth,
 } from "netsparker-cloud";
@@ -141,9 +142,9 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
 
     async started(this: INetsparkerAdapterMixin) {
       if (this.settings.accountInfoOnStart) {
-        const accountDetails: AccountLicenseApiModel =
+        const acccountDetails: AccountLicenseApiModel =
           await this.netsparkerAdapter.AccountApi.accountLicense();
-        this.logger.info("Netsparker account info:", accountDetails);
+        this.logger.info("Netsparker account info:", acccountDetails);
       }
     },
   };
