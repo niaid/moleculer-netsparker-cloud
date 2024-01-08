@@ -156,13 +156,15 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
       if (!this.settings.netsparkerToken) {
         throw new Error("a value for netsparkerToken was not provided!");
       }
-      this.netsparkerAuth.username = this.settings.netsparkerUserId;
-      this.netsparkerAuth.password = this.settings.netsparkerToken;
+      //this.netsparkerAuth.username = this.settings.netsparkerUserId;
+      //this.netsparkerAuth.password = this.settings.netsparkerToken;
       this.logger.info("Netsparker adapter: basic HTTP auth configured");
       APIS.map((netsparkerAPI) => {
         const APIName = netsparkerAPI.name as NetsparkerAPINames;
         const APIConfig: ConfigurationParameters = {
           basePath: this.settings.netsparkerBasePath,
+          username: this.settings.netsparkerUserId,
+          password: this.settings.netsparkerToken,
         };
         // @ts-ignore
         this.netsparkerAdapter[APIName] = new netsparkerAPI(this.APIConfig);
