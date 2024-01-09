@@ -82,6 +82,8 @@ exports.NetsparkerAdapterMixin = {
             const APIName = netsparkerAPI.name;
             const APIConfig = {
                 basePath: this.settings.netsparkerBasePath,
+                username: this.settings.netsparkerUserId,
+                password: this.settings.netsparkerToken,
             };
             // @ts-ignore
             this.netsparkerAdapter[APIName] = new netsparkerAPI(this.APIConfig);
