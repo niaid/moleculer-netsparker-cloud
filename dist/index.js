@@ -84,6 +84,7 @@ exports.NetsparkerAdapterMixin = {
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
                 password: this.settings.netsparkerToken,
+                credentials: "include",
             };
             // @ts-ignore
             this.netsparkerAdapter[APIName] = new netsparkerAPI(APIConfig);
