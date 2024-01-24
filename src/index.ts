@@ -31,6 +31,7 @@ import {
 export * from "netsparker-cloud";
 
 type APIDictionary = {
+  AccountApi: typeof AccountApi;
   AgentGroupsApi: typeof AgentGroupsApi;
   AgentsApi: typeof AgentsApi;
   AuditLogsApi: typeof AuditLogsApi;
@@ -53,6 +54,7 @@ type APIDictionary = {
 type NetsparkerAPINames = keyof APIDictionary;
 
 const APIS: (
+  | typeof AccountApi
   | typeof AgentGroupsApi
   | typeof AgentsApi
   | typeof AuditLogsApi
@@ -71,6 +73,7 @@ const APIS: (
   | typeof WebsiteGroupsApi
   | typeof WebsitesApi
 )[] = [
+  AccountApi,
   AgentGroupsApi,
   AgentsApi,
   AuditLogsApi,
@@ -169,10 +172,10 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
     },
 
     async started(this: INetsparkerAdapterMixin) {
-      // if (this.settings.accountInfoOnStart) {
-      //   const acccountDetails: AccountLicenseApiModel =
-      //     await this.netsparkerAdapter.AccountApi.accountLicense();
-      //   this.logger.info("Netsparker account info:", acccountDetails);
-      // }
+      if (this.settings.accountInfoOnStart) {
+        const acccountDetails: AccountLicenseApiModel =
+          await this.netsparkerAdapter.AccountApi.accountLicense();
+        this.logger.info("Netsparker account info:", acccountDetails);
+      }
     },
   };

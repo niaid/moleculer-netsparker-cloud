@@ -1,8 +1,9 @@
 import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
 import * as Netsparker from "netsparker-cloud";
-import { AgentGroupsApi, AgentsApi, AuditLogsApi, AuthenticationProfilesApi, DiscoveryApi, IssuesApi, MembersApi, NotificationsApi, RolesApi, ScanPoliciesApi, ScanProfilesApi, ScansApi, TeamApi, TechnologiesApi, VulnerabilityApi, WebsiteGroupsApi, WebsitesApi } from "netsparker-cloud";
+import { AccountApi, AgentGroupsApi, AgentsApi, AuditLogsApi, AuthenticationProfilesApi, DiscoveryApi, IssuesApi, MembersApi, NotificationsApi, RolesApi, ScanPoliciesApi, ScanProfilesApi, ScansApi, TeamApi, TechnologiesApi, VulnerabilityApi, WebsiteGroupsApi, WebsitesApi } from "netsparker-cloud";
 export * from "netsparker-cloud";
 type APIDictionary = {
+    AccountApi: typeof AccountApi;
     AgentGroupsApi: typeof AgentGroupsApi;
     AgentsApi: typeof AgentsApi;
     AuditLogsApi: typeof AuditLogsApi;
