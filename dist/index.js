@@ -33,7 +33,6 @@ const netsparker_cloud_1 = require("netsparker-cloud");
 // re-export API client to expose all model types
 __exportStar(require("netsparker-cloud"), exports);
 const APIS = [
-    netsparker_cloud_1.AccountApi,
     netsparker_cloud_1.AgentGroupsApi,
     netsparker_cloud_1.AgentsApi,
     netsparker_cloud_1.AuditLogsApi,
@@ -90,10 +89,11 @@ exports.NetsparkerAdapterMixin = {
         this.logger.info("Netsparker adapter: enabled");
     },
     async started() {
-        if (this.settings.accountInfoOnStart) {
-            const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
-            this.logger.info("Netsparker account info:", acccountDetails);
-        }
+        // if (this.settings.accountInfoOnStart) {
+        //   const acccountDetails: AccountLicenseApiModel =
+        //     await this.netsparkerAdapter.AccountApi.accountLicense();
+        //   this.logger.info("Netsparker account info:", acccountDetails);
+        // }
     },
 };
 //# sourceMappingURL=index.js.map
