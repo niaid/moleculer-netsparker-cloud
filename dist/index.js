@@ -91,7 +91,7 @@ exports.NetsparkerAdapterMixin = {
     },
     async started() {
         if (this.settings.accountInfoOnStart) {
-            const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
+            const acccountDetails = await this.netsparkerAdapter["AccountApi"].accountLicense();
             this.logger.info("Netsparker account info:", acccountDetails);
         }
     },
