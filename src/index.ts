@@ -172,10 +172,10 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
     },
 
     async started(this: INetsparkerAdapterMixin) {
-      if (this.settings.accountInfoOnStart) {
-        const acccountDetails: AccountLicenseApiModel =
-          await this.netsparkerAdapter["AccountApi"].accountLicense();
-        this.logger.info("Netsparker account info:", acccountDetails);
-      }
+      // if (this.settings.accountInfoOnStart) {
+      //   const acccountDetails: AccountLicenseApiModel =
+      //     await this.netsparkerAdapter.AccountApi.accountLicense();
+      //   this.logger.info("Netsparker account info:", acccountDetails);
+      // }
     },
   };

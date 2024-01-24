@@ -90,10 +90,11 @@ exports.NetsparkerAdapterMixin = {
         this.logger.info("Netsparker adapter: enabled");
     },
     async started() {
-        if (this.settings.accountInfoOnStart) {
-            const acccountDetails = await this.netsparkerAdapter["AccountApi"].accountLicense();
-            this.logger.info("Netsparker account info:", acccountDetails);
-        }
+        // if (this.settings.accountInfoOnStart) {
+        //   const acccountDetails: AccountLicenseApiModel =
+        //     await this.netsparkerAdapter.AccountApi.accountLicense();
+        //   this.logger.info("Netsparker account info:", acccountDetails);
+        // }
     },
 };
 //# sourceMappingURL=index.js.map
