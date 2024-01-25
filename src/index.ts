@@ -165,8 +165,7 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
         const ApiConfigParameters: ConfigurationParameters = {
           basePath: this.settings.netsparkerBasePath,
           username: this.settings.netsparkerUserId,
-          password: this.settings.netsparkerToken,
-          credentials: "include",
+          apiKey: this.settings.netsparkerToken,
         };
         // @ts-ignore
         this.netsparkerAdapter[APIName] = new netsparkerAPI(
