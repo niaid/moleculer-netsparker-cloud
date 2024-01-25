@@ -86,11 +86,19 @@ exports.NetsparkerAdapterMixin = {
                 password: this.settings.netsparkerToken,
             };
             this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
+            const Headers = {
+                Authorization: "Basic " +
+                    encodeURI(this.settings.netsparkerUserId +
+                        ":" +
+                        this.settings.netsparkerToken),
+                "Content-type": "application/json",
+            };
             const NetsparkerAPI = new netsparkerAPI(new netsparker_cloud_1.Configuration({
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
                 password: this.settings.netsparkerToken,
                 credentials: "include",
+                headers: Headers,
             }));
             // @ts-ignore
             this.netsparkerAdapter[APIName] = NetsparkerAPI;

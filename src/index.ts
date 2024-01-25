@@ -5,6 +5,7 @@ import {
   BaseAPI,
   Configuration,
   ConfigurationParameters,
+  HTTPHeaders,
 } from "netsparker-cloud";
 
 // imported separately to make updates to APIDictionary easier
@@ -172,12 +173,24 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
           "Netsparker config: " + JSON.stringify(ApiConfigParameters)
         );
 
+        const Headers: HTTPHeaders = {
+          Authorization:
+            "Basic " +
+            encodeURI(
+              this.settings.netsparkerUserId +
+                ":" +
+                this.settings.netsparkerToken
+            ),
+          "Content-type": "application/json",
+        };
+
         const NetsparkerAPI = new netsparkerAPI(
           new Configuration({
             basePath: this.settings.netsparkerBasePath,
             username: this.settings.netsparkerUserId,
             password: this.settings.netsparkerToken,
             credentials: "include",
+            headers: Headers,
           })
         );
         // @ts-ignore
