@@ -83,11 +83,16 @@ exports.NetsparkerAdapterMixin = {
             const ApiConfigParameters = {
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
-                accessToken: this.settings.netsparkerToken,
+                password: this.settings.netsparkerToken,
             };
             this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
+            const NetsparkerAPI = new netsparkerAPI(new netsparker_cloud_1.Configuration({
+                basePath: this.settings.netsparkerBasePath,
+                username: this.settings.netsparkerUserId,
+                password: this.settings.netsparkerToken,
+            }));
             // @ts-ignore
-            this.netsparkerAdapter[APIName] = new netsparkerAPI(new netsparker_cloud_1.Configuration(ApiConfigParameters));
+            this.netsparkerAdapter[APIName] = NetsparkerAPI;
             this.logger.info("Netsparker Adaptor: " +
                 JSON.stringify(this.netsparkerAdapter[APIName]));
         });
@@ -95,6 +100,7 @@ exports.NetsparkerAdapterMixin = {
     },
     async started() {
         if (this.settings.accountInfoOnStart) {
+            this.loggger.info(JSON.stringify(this.netsparkerAdapter));
             const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
             this.logger.info("Netsparker account info:", JSON.stringify(acccountDetails));
         }
