@@ -88,9 +88,9 @@ exports.NetsparkerAdapterMixin = {
             this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
             const Headers = {
                 Authorization: "Basic " +
-                    encodeURI(this.settings.netsparkerUserId +
+                    Buffer.from(this.settings.netsparkerUserId +
                         ":" +
-                        this.settings.netsparkerToken),
+                        this.settings.netsparkerToken).toString("base64"),
                 "Content-type": "application/json",
             };
             const NetsparkerAPI = new netsparkerAPI(new netsparker_cloud_1.Configuration({

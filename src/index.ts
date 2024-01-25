@@ -176,11 +176,11 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
         const Headers: HTTPHeaders = {
           Authorization:
             "Basic " +
-            encodeURI(
+            Buffer.from(
               this.settings.netsparkerUserId +
                 ":" +
                 this.settings.netsparkerToken
-            ),
+            ).toString("base64"),
           "Content-type": "application/json",
         };
 
