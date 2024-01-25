@@ -76,16 +76,9 @@ exports.NetsparkerAdapterMixin = {
         if (!this.settings.netsparkerToken) {
             throw new Error("a value for netsparkerToken was not provided!");
         }
-        this.logger.info("Netsparker adapter: basic HTTP auth configured");
         APIS.map((netsparkerAPI) => {
             const APIName = netsparkerAPI.name;
             this.logger.info("Netsparker API: " + APIName);
-            const ApiConfigParameters = {
-                basePath: this.settings.netsparkerBasePath,
-                username: this.settings.netsparkerUserId,
-                password: this.settings.netsparkerToken,
-            };
-            this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
             const Headers = {
                 Authorization: "Basic " +
                     Buffer.from(this.settings.netsparkerUserId +
@@ -102,18 +95,11 @@ exports.NetsparkerAdapterMixin = {
             }));
             // @ts-ignore
             this.netsparkerAdapter[APIName] = NetsparkerAPI;
-            this.logger.info("Netsparker Adapter: " +
-                JSON.stringify(this.netsparkerAdapter[APIName]));
         });
         this.logger.info("Netsparker adapter: enabled");
-        this.logger.info("full adapter: " + JSON.stringify(this.netsparkerAdapter));
     },
     async started() {
         if (this.settings.accountInfoOnStart) {
-            this.logger.info("Starting netsparkeradapter");
-            this.logger.info(JSON.stringify(this.netsparkerAdapter));
-            this.logger.info("specific netsparker adapter: " +
-                JSON.stringify(this.netsparkerAdapter["AccountApi"]));
             const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
             this.logger.info("Netsparker account info:", JSON.stringify(acccountDetails));
         }
