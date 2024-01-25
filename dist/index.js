@@ -97,6 +97,7 @@ exports.NetsparkerAdapterMixin = {
                 JSON.stringify(this.netsparkerAdapter[APIName]));
         });
         this.logger.info("Netsparker adapter: enabled");
+        this.logger.info("full adapter: " + JSON.stringify(this.netsparkerAdapter));
     },
     async started() {
         if (this.settings.accountInfoOnStart) {
