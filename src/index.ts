@@ -162,14 +162,24 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
       APIS.map((netsparkerAPI) => {
         const APIName = netsparkerAPI.name as NetsparkerAPINames;
 
+        this.logger.info("Netsparker API: " + APIName);
+        this.logger.info("Netsparker config: ");
         const ApiConfigParameters: ConfigurationParameters = {
           basePath: this.settings.netsparkerBasePath,
           username: this.settings.netsparkerUserId,
-          apiKey: this.settings.netsparkerToken,
+          accessToken: this.settings.netsparkerToken,
         };
+        this.logger.info(
+          "Netsparker Adaptor: " +
+            JSON.stringify(this.netsparkerAdapter[APIName])
+        );
         // @ts-ignore
         this.netsparkerAdapter[APIName] = new netsparkerAPI(
           new Configuration(ApiConfigParameters)
+        );
+
+        this.logger.info(
+          "Netsparker config: " + JSON.stringify(ApiConfigParameters)
         );
       });
       this.logger.info("Netsparker adapter: enabled");
@@ -179,7 +189,10 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
       if (this.settings.accountInfoOnStart) {
         const acccountDetails: AccountLicenseApiModel =
           await this.netsparkerAdapter.AccountApi.accountLicense();
-        this.logger.info("Netsparker account info:", acccountDetails);
+        this.logger.info(
+          "Netsparker account info:",
+          JSON.stringify(acccountDetails)
+        );
       }
     },
   };

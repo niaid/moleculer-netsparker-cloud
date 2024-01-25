@@ -79,20 +79,25 @@ exports.NetsparkerAdapterMixin = {
         this.logger.info("Netsparker adapter: basic HTTP auth configured");
         APIS.map((netsparkerAPI) => {
             const APIName = netsparkerAPI.name;
+            this.logger.info("Netsparker API: " + APIName);
+            this.logger.info("Netsparker config: ");
             const ApiConfigParameters = {
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
-                apiKey: this.settings.netsparkerToken,
+                accessToken: this.settings.netsparkerToken,
             };
+            this.logger.info("Netsparker Adaptor: " +
+                JSON.stringify(this.netsparkerAdapter[APIName]));
             // @ts-ignore
             this.netsparkerAdapter[APIName] = new netsparkerAPI(new netsparker_cloud_1.Configuration(ApiConfigParameters));
+            this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
         });
         this.logger.info("Netsparker adapter: enabled");
     },
     async started() {
         if (this.settings.accountInfoOnStart) {
             const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
-            this.logger.info("Netsparker account info:", acccountDetails);
+            this.logger.info("Netsparker account info:", JSON.stringify(acccountDetails));
         }
     },
 };
