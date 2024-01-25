@@ -80,17 +80,16 @@ exports.NetsparkerAdapterMixin = {
         APIS.map((netsparkerAPI) => {
             const APIName = netsparkerAPI.name;
             this.logger.info("Netsparker API: " + APIName);
-            this.logger.info("Netsparker config: ");
             const ApiConfigParameters = {
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
                 accessToken: this.settings.netsparkerToken,
             };
-            this.logger.info("Netsparker Adaptor: " +
-                JSON.stringify(this.netsparkerAdapter[APIName]));
+            this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
             // @ts-ignore
             this.netsparkerAdapter[APIName] = new netsparkerAPI(new netsparker_cloud_1.Configuration(ApiConfigParameters));
-            this.logger.info("Netsparker config: " + JSON.stringify(ApiConfigParameters));
+            this.logger.info("Netsparker Adaptor: " +
+                JSON.stringify(this.netsparkerAdapter[APIName]));
         });
         this.logger.info("Netsparker adapter: enabled");
     },

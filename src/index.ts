@@ -163,23 +163,23 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
         const APIName = netsparkerAPI.name as NetsparkerAPINames;
 
         this.logger.info("Netsparker API: " + APIName);
-        this.logger.info("Netsparker config: ");
+
         const ApiConfigParameters: ConfigurationParameters = {
           basePath: this.settings.netsparkerBasePath,
           username: this.settings.netsparkerUserId,
           accessToken: this.settings.netsparkerToken,
         };
         this.logger.info(
-          "Netsparker Adaptor: " +
-            JSON.stringify(this.netsparkerAdapter[APIName])
+          "Netsparker config: " + JSON.stringify(ApiConfigParameters)
         );
+
         // @ts-ignore
         this.netsparkerAdapter[APIName] = new netsparkerAPI(
           new Configuration(ApiConfigParameters)
         );
-
         this.logger.info(
-          "Netsparker config: " + JSON.stringify(ApiConfigParameters)
+          "Netsparker Adaptor: " +
+            JSON.stringify(this.netsparkerAdapter[APIName])
         );
       });
       this.logger.info("Netsparker adapter: enabled");
