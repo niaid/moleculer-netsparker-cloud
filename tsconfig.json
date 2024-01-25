@@ -17,24 +17,20 @@
     "baseUrl": "./",
     "outDir": "./dist",
     "rootDir": "./src",
-    "typeRoots": [],
+    "types": ["node"],
+    "typeRoots": ["node_modules/@types"],
     "skipLibCheck": true,
     "declaration": true
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "types"
-  ],
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "types"],
   "plugins": [
     {
       "name": "typescript-tslint-plugin"
     }
   ],
   "typedocOptions": {
-      "out": "docs",
-      "excludeExternals": true,
+    "out": "docs",
+    "excludeExternals": true
   }
 }

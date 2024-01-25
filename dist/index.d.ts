@@ -1,12 +1,8 @@
 import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
-import * as Netsparker from 'netsparker-cloud';
-import { Authentication, HttpBasicAuth } from "netsparker-cloud";
+import * as Netsparker from "netsparker-cloud";
 import { AccountApi, AgentGroupsApi, AgentsApi, AuditLogsApi, AuthenticationProfilesApi, DiscoveryApi, IssuesApi, MembersApi, NotificationsApi, RolesApi, ScanPoliciesApi, ScanProfilesApi, ScansApi, TeamApi, TechnologiesApi, VulnerabilityApi, WebsiteGroupsApi, WebsitesApi } from "netsparker-cloud";
-export * from 'netsparker-cloud';
-export declare type NetsparkerAPIClient = {
-    setDefaultAuthentication(authStrategy: Authentication): void;
-};
-declare type APIDictionary = {
+export * from "netsparker-cloud";
+type APIDictionary = {
     AccountApi: typeof AccountApi;
     AgentGroupsApi: typeof AgentGroupsApi;
     AgentsApi: typeof AgentsApi;
@@ -26,8 +22,8 @@ declare type APIDictionary = {
     WebsiteGroupsApi: typeof WebsiteGroupsApi;
     WebsitesApi: typeof WebsitesApi;
 };
-declare type NetsparkerAPINames = keyof APIDictionary;
-export declare type NetsparkerAdapter = {
+type NetsparkerAPINames = keyof APIDictionary;
+export type NetsparkerAdapter = {
     [API in NetsparkerAPINames]: InstanceType<APIDictionary[API]>;
 };
 export interface INetsparkerAdapterMixinSettings extends ServiceSettingSchema {
@@ -54,7 +50,6 @@ export interface INetsparkerAdapterMixinSettings extends ServiceSettingSchema {
 export declare const DefaultNetsparkerAdapterSettings: INetsparkerAdapterMixinSettings;
 export interface INetsparkerAdapterMixin extends Service<INetsparkerAdapterMixinSettings> {
     netsparkerAdapter: NetsparkerAdapter;
-    netsparkerAuth: HttpBasicAuth;
     netsparkerSDK: typeof Netsparker;
 }
 export declare const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettings>;
