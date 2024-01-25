@@ -192,7 +192,6 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
 
     async started(this: INetsparkerAdapterMixin) {
       if (this.settings.accountInfoOnStart) {
-        this.logger.info("Describing this: " + JSON.stringify(this));
         this.logger.info("Starting netsparkeradapter");
         this.loggger.info(JSON.stringify(this.netsparkerAdapter));
         this.logger.info(
