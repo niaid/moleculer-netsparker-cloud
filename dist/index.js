@@ -28,29 +28,30 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NetsparkerAdapterMixin = exports.DefaultNetsparkerAdapterSettings = void 0;
 const Netsparker = __importStar(require("netsparker-cloud"));
-// imported separately to make updates to APIDictionary easier
 const netsparker_cloud_1 = require("netsparker-cloud");
+// imported separately to make updates to APIDictionary easier
+const netsparker_cloud_2 = require("netsparker-cloud");
 // re-export API client to expose all model types
 __exportStar(require("netsparker-cloud"), exports);
 const APIS = [
-    netsparker_cloud_1.AccountApi,
-    netsparker_cloud_1.AgentGroupsApi,
-    netsparker_cloud_1.AgentsApi,
-    netsparker_cloud_1.AuditLogsApi,
-    netsparker_cloud_1.AuthenticationProfilesApi,
-    netsparker_cloud_1.DiscoveryApi,
-    netsparker_cloud_1.IssuesApi,
-    netsparker_cloud_1.MembersApi,
-    netsparker_cloud_1.NotificationsApi,
-    netsparker_cloud_1.RolesApi,
-    netsparker_cloud_1.ScanPoliciesApi,
-    netsparker_cloud_1.ScanProfilesApi,
-    netsparker_cloud_1.ScansApi,
-    netsparker_cloud_1.TeamApi,
-    netsparker_cloud_1.TechnologiesApi,
-    netsparker_cloud_1.VulnerabilityApi,
-    netsparker_cloud_1.WebsiteGroupsApi,
-    netsparker_cloud_1.WebsitesApi,
+    netsparker_cloud_2.AccountApi,
+    netsparker_cloud_2.AgentGroupsApi,
+    netsparker_cloud_2.AgentsApi,
+    netsparker_cloud_2.AuditLogsApi,
+    netsparker_cloud_2.AuthenticationProfilesApi,
+    netsparker_cloud_2.DiscoveryApi,
+    netsparker_cloud_2.IssuesApi,
+    netsparker_cloud_2.MembersApi,
+    netsparker_cloud_2.NotificationsApi,
+    netsparker_cloud_2.RolesApi,
+    netsparker_cloud_2.ScanPoliciesApi,
+    netsparker_cloud_2.ScanProfilesApi,
+    netsparker_cloud_2.ScansApi,
+    netsparker_cloud_2.TeamApi,
+    netsparker_cloud_2.TechnologiesApi,
+    netsparker_cloud_2.VulnerabilityApi,
+    netsparker_cloud_2.WebsiteGroupsApi,
+    netsparker_cloud_2.WebsitesApi,
 ];
 exports.DefaultNetsparkerAdapterSettings = {
     netsparkerBasePath: undefined,
@@ -78,23 +79,22 @@ exports.NetsparkerAdapterMixin = {
         this.logger.info("Netsparker adapter: basic HTTP auth configured");
         APIS.map((netsparkerAPI) => {
             const APIName = netsparkerAPI.name;
-            const APIConfig = {
+            const ApiConfigParameters = {
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
                 password: this.settings.netsparkerToken,
                 credentials: "include",
             };
             // @ts-ignore
-            this.netsparkerAdapter[APIName] = new netsparkerAPI(APIConfig);
+            this.netsparkerAdapter[APIName] = new netsparkerAPI(new netsparker_cloud_1.Configuration(ApiConfigParameters));
         });
         this.logger.info("Netsparker adapter: enabled");
     },
     async started() {
-        // if (this.settings.accountInfoOnStart) {
-        //   const acccountDetails: AccountLicenseApiModel =
-        //     await this.netsparkerAdapter["AccountApi"].accountLicense();
-        //   this.logger.info("Netsparker account info:", acccountDetails);
-        // }
+        if (this.settings.accountInfoOnStart) {
+            const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
+            this.logger.info("Netsparker account info:", acccountDetails);
+        }
     },
 };
 //# sourceMappingURL=index.js.map

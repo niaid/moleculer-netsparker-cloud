@@ -2,6 +2,8 @@ import { ServiceSchema, ServiceSettingSchema, Service } from "moleculer";
 import * as Netsparker from "netsparker-cloud";
 import {
   AccountLicenseApiModel,
+  BaseAPI,
+  Configuration,
   ConfigurationParameters,
 } from "netsparker-cloud";
 
@@ -159,23 +161,26 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
       this.logger.info("Netsparker adapter: basic HTTP auth configured");
       APIS.map((netsparkerAPI) => {
         const APIName = netsparkerAPI.name as NetsparkerAPINames;
-        const APIConfig: ConfigurationParameters = {
+
+        const ApiConfigParameters: ConfigurationParameters = {
           basePath: this.settings.netsparkerBasePath,
           username: this.settings.netsparkerUserId,
           password: this.settings.netsparkerToken,
           credentials: "include",
         };
         // @ts-ignore
-        this.netsparkerAdapter[APIName] = new netsparkerAPI(APIConfig);
+        this.netsparkerAdapter[APIName] = new netsparkerAPI(
+          new Configuration(ApiConfigParameters)
+        );
       });
       this.logger.info("Netsparker adapter: enabled");
     },
 
     async started(this: INetsparkerAdapterMixin) {
-      // if (this.settings.accountInfoOnStart) {
-      //   const acccountDetails: AccountLicenseApiModel =
-      //     await this.netsparkerAdapter["AccountApi"].accountLicense();
-      //   this.logger.info("Netsparker account info:", acccountDetails);
-      // }
+      if (this.settings.accountInfoOnStart) {
+        const acccountDetails: AccountLicenseApiModel =
+          await this.netsparkerAdapter.AccountApi.accountLicense();
+        this.logger.info("Netsparker account info:", acccountDetails);
+      }
     },
   };
