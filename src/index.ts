@@ -163,7 +163,6 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
         const APIName = netsparkerAPI.name as NetsparkerAPINames;
 
         this.logger.info("Netsparker API: " + APIName);
-        this.logger.info("Basepath:  " + this.setting.netsparkerBasePath);
         const ApiConfigParameters: ConfigurationParameters = {
           basePath: this.settings.netsparkerBasePath,
           username: this.settings.netsparkerUserId,

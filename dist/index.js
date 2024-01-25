@@ -80,7 +80,6 @@ exports.NetsparkerAdapterMixin = {
         APIS.map((netsparkerAPI) => {
             const APIName = netsparkerAPI.name;
             this.logger.info("Netsparker API: " + APIName);
-            this.logger.info("Basepath:  " + this.setting.netsparkerBasePath);
             const ApiConfigParameters = {
                 basePath: this.settings.netsparkerBasePath,
                 username: this.settings.netsparkerUserId,
