@@ -93,14 +93,17 @@ exports.NetsparkerAdapterMixin = {
             }));
             // @ts-ignore
             this.netsparkerAdapter[APIName] = NetsparkerAPI;
-            this.logger.info("Netsparker Adaptor: " +
+            this.logger.info("Netsparker Adapter: " +
                 JSON.stringify(this.netsparkerAdapter[APIName]));
         });
         this.logger.info("Netsparker adapter: enabled");
     },
     async started() {
         if (this.settings.accountInfoOnStart) {
+            this.logger.info("Starting netsparkeradapter");
             this.loggger.info(JSON.stringify(this.netsparkerAdapter));
+            this.logger.info("specific netsparker adapter: " +
+                JSON.stringify(this.netsparkerAdapter["AccountApi"]));
             const acccountDetails = await this.netsparkerAdapter.AccountApi.accountLicense();
             this.logger.info("Netsparker account info:", JSON.stringify(acccountDetails));
         }

@@ -183,7 +183,7 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
         // @ts-ignore
         this.netsparkerAdapter[APIName] = NetsparkerAPI;
         this.logger.info(
-          "Netsparker Adaptor: " +
+          "Netsparker Adapter: " +
             JSON.stringify(this.netsparkerAdapter[APIName])
         );
       });
@@ -192,7 +192,12 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
 
     async started(this: INetsparkerAdapterMixin) {
       if (this.settings.accountInfoOnStart) {
+        this.logger.info("Starting netsparkeradapter");
         this.loggger.info(JSON.stringify(this.netsparkerAdapter));
+        this.logger.info(
+          "specific netsparker adapter: " +
+            JSON.stringify(this.netsparkerAdapter["AccountApi"])
+        );
         const acccountDetails: AccountLicenseApiModel =
           await this.netsparkerAdapter.AccountApi.accountLicense();
         this.logger.info(
