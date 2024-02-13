@@ -173,7 +173,6 @@ export const NetsparkerAdapterMixin: ServiceSchema<INetsparkerAdapterMixinSettin
                 ":" +
                 this.settings.netsparkerToken
             ).toString("base64"),
-          "Content-type": "application/json",
         };
 
         const NetsparkerAPI = new netsparkerAPI(
