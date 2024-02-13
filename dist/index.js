@@ -84,7 +84,6 @@ exports.NetsparkerAdapterMixin = {
                     Buffer.from(this.settings.netsparkerUserId +
                         ":" +
                         this.settings.netsparkerToken).toString("base64"),
-                "Content-type": "application/json",
             };
             const NetsparkerAPI = new netsparkerAPI(new netsparker_cloud_1.Configuration({
                 basePath: this.settings.netsparkerBasePath,
