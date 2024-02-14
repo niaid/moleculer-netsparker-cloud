@@ -1,13 +1,13 @@
 {
   "name": "moleculer-netsparker-cloud",
-  "version": "0.4.0",
+  "version": "0.4.1-unstable",
   "description": "Moleculer mixin for consuming Netsparker Cloud services.",
   "main": "dist/index.js",
   "scripts": {
-    "docs": "rm -rf ./docs/* && typedoc ./src",
-    "build": "npm ci && npm run docs && tsc",
+    "compile": "npm ci && tsc",
     "test": "node test/integration.js",
-    "testts": "node test/integration-ts.js"
+    "testts": "node test/integration-ts.js",
+    "release": "./scripts/release.sh"
   },
   "repository": {
     "type": "git",
