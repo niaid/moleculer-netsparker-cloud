@@ -1,6 +1,6 @@
 {
   "name": "moleculer-netsparker-cloud",
-  "version": "0.4.1",
+  "version": "0.4.2-unstable",
   "description": "Moleculer mixin for consuming Netsparker Cloud services.",
   "main": "dist/index.js",
   "scripts": {
