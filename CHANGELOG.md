@@ -5,7 +5,7 @@
 - 
 
 ##### IMPROVEMENT
-- 
+- Upgrade `netsparker-cloud-js` to 0.4.0; includes potentially breaking changes from upstream API
 
 ##### BUG FIX
 - 
@@ -18,5 +18,3 @@
 
 - Created CHANGELOG.md
 - Version management setup with package.json
-
-- ***
