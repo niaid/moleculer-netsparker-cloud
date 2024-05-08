@@ -1,3 +1,17 @@
+#### [0.5.1-unstable (latest)](https://github.com/niaid/moleculer-netsparker-cloud/)
+
+
+##### FEATURE
+- 
+
+##### IMPROVEMENT
+- 
+
+##### BUG FIX
+- 
+
+---
+
 #### [0.5.0 (2024-05-08)](https://github.com/niaid/moleculer-netsparker-cloud/releases/tag/0.5.0)
 
 ##### IMPROVEMENT
