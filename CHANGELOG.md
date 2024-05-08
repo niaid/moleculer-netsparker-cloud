@@ -1,14 +1,7 @@
-#### [0.4.2-unstable (latest)](https://github.com/niaid/moleculer-netsparker-cloud/)
-
-
-##### FEATURE
-- 
+#### [0.5.0 (2024-05-08)](https://github.com/niaid/moleculer-netsparker-cloud/releases/tag/0.5.0)
 
 ##### IMPROVEMENT
 - Upgrade `netsparker-cloud-js` to 0.4.0; includes potentially breaking changes from upstream API
-
-##### BUG FIX
-- 
 
 ---
 
